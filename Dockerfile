@@ -1,4 +1,4 @@
-FROM ubuntu:hirsute
+FROM ubuntu:focal
 
 # Simplified from: https://github.com/uphold/docker-litecoin-core/blob/master/0.18/Dockerfile
 
@@ -9,9 +9,9 @@ ENV LITECOIN_DATA=/home/litecoin/.litecoin
 ENV LITECOIN_USER=litecoin
 
 # Get the base ready.
-RUN apt-get update && apt-get upgrade -y \
-    && apt-get install -y wget gnupg && apt-get clean \
-    && gpg --no-tty --keyserver pgp.mit.edu --recv-keys 0xFE3348877809386C
+RUN apt-get update && apt-get upgrade -y && apt-get install -y wget gnupg && apt-get clean
+
+RUN gpg --no-tty --keyserver ha.pool.sks-keyservers.net --recv-keys 0xFE3348877809386C
 
 WORKDIR /
 
