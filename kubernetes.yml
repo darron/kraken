@@ -13,10 +13,14 @@ spec:
       labels:
         app: litecoin
     spec:
+      securityContext:
+        runAsUser: 100
+        runAsGroup: 101
+        fsGroup: 101
       terminationGracePeriodSeconds: 10
       containers:
       - name: litecoin
-        image: darron/litecoin
+        image: darron/kraken
         volumeMounts:
         - name: data
           mountPath: /home/litecoin/.litecoin
