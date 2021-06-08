@@ -6,11 +6,17 @@ Is built automatically and is available here:
 
 [https://hub.docker.com/repository/docker/darron/kraken](https://hub.docker.com/repository/docker/darron/kraken)
 
+NOTE: I switched to Alpine Linux to minimize the attack surface. I originally built it with Ubuntu, but:
+
+1. The most current version of Ubuntu wouldn't build on Docker Hub for some reason.
+2. The older version of Ubuntu had several medium severity Anchore security problems.
+
 # Kubernetes StatefulSet
 
 Tested on DigitalOcean:
 
 ```bash
+~ kubectl apply -f kubernetes.yml
 ~ kubectl get pvc
 NAME              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS       AGE
 data-litecoin-0   Bound    pvc-75c80746-1a78-44f0-8505-c57e93144574   1Gi        RWO            do-block-storage   16m
@@ -20,7 +26,7 @@ data-litecoin-0   Bound    pvc-75c80746-1a78-44f0-8505-c57e93144574   1Gi       
 
 1. Automatically building the Docker image using Docker Hub: [darron/kraken](https://hub.docker.com/repository/docker/darron/kraken)
 2. [Automatically running Anchore](https://github.com/darron/kraken/blob/main/.github/workflows/anchore-analysis.yml) using Github Actions.
-3. TODO: Travis deploy.
+3. TODO: Travis deploy to Kubernetes.
 
 # Terraform lovers unite.
 
