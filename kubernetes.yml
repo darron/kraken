@@ -24,6 +24,11 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /home/litecoin/.litecoin
+        resources:
+          limits:
+            memory: 256Mi
+          requests:
+            memory: 128Mi
   volumeClaimTemplates:
   - metadata:
       name: data
